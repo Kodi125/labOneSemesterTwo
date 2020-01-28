@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LabOne2020
 {
-   
-    public class Band : IComparable<Band>
+
+    public abstract class Band : IComparable<Band>
     {
         #region properties
         public string Name { get; set; }
@@ -16,11 +16,13 @@ namespace LabOne2020
         #endregion properties
 
         #region constructors
+        //default constructor
         public Band()
         {
 
 
         }
+        //parameterised constructor
         public Band(string name, int yearFormed, string members)
 
         {
@@ -35,6 +37,7 @@ namespace LabOne2020
                 Members.Add(n);
             }
         }
+
         #region ToString()
         public override string ToString()
         {
@@ -51,5 +54,66 @@ namespace LabOne2020
             return this.Name.CompareTo(name.Name);
         }
         #endregion IComparable Method
+
+        public class RockBand : Band
+        {
+            public RockBand(string name, int yearFormed, string members)
+            {
+                Name = name;
+                YearFormed = yearFormed;
+                Members = new List<string>();
+
+                string[] memberNames = members.Split(',');
+                foreach (string n in memberNames)
+                {
+                    Members.Add(n);
+                }
+            }
+            /*Methods*/
+            public override string ToString()
+            {
+
+                return $"{Name} RockBand";
+            }
+
+        }
+        public class Popband : Band
+        {
+            public Popband(string name, int yearFormed, string members)
+            {
+                Name = name;
+                YearFormed = yearFormed;
+                Members = new List<string>();
+
+                string[] memberNames = members.Split(',');
+                foreach (string n in memberNames)
+                {
+                    Members.Add(n);
+                }
+            }
+            public override string ToString()
+            {
+                return $"{Name} Popband";
+            }
+        }
+        public class Indieband : Band
+        {
+            public Indieband(string name, int yearFormed, string members)
+            {
+                Name = name;
+                YearFormed = yearFormed;
+                Members = new List<string>();
+
+                string[] memberNames = members.Split(',');
+                foreach (string n in memberNames)
+                {
+                    Members.Add(n);
+                }
+            }
+            public override string ToString()
+            {
+                return $"{Name} Indieband";
+            }
+        }
     }
 }
